@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/dashboard";
 import LeadDetail from "@/pages/lead-detail";
 import { LeadProvider } from "@/lib/store";
+import { ThemeProvider } from "next-themes";
 
 function Router() {
   return (
@@ -21,12 +22,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <LeadProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </LeadProvider>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <LeadProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </LeadProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
