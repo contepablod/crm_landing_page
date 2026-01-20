@@ -25,6 +25,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { ThemeToggle } from "@/components/theme-toggle";
+import heroImage from "@assets/generated_images/lead_management_abstract_workspace_background.png";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -183,6 +184,19 @@ export default function Dashboard() {
           </div>
         </div>
       </header>
+
+      <div className="w-full h-48 relative overflow-hidden bg-muted">
+        <img 
+          src={heroImage} 
+          alt="Lead Management" 
+          className="w-full h-full object-cover opacity-50 dark:opacity-30 mix-blend-multiply dark:mix-blend-overlay"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute bottom-6 left-0 right-0 max-w-5xl mx-auto px-4">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground">Welcome back</h2>
+          <p className="text-muted-foreground">Manage your sales pipeline and track communication channels.</p>
+        </div>
+      </div>
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
