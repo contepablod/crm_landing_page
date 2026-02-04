@@ -3,21 +3,17 @@ import fs from "fs";
 import path from "path";
 
 export function serveStatic(app: Express) {
-  // assuming repo structure:
-  // /client (vite app)
-  // /server (express)
-  // build output -> /client/dist
-  const distPath = path.resolve(process.cwd(), "client", "dist");
+  // build output shown in your logs:
+  // dist/public/index.html, dist/public/assets/...
+  const distPath = path.resolve(process.cwd(), "dist", "public");
 
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}. Did you run the client build?`,
-    );
+    throw new Error(`Could not find the build directory: ${distPath}`);
   }
 
   app.use(express.static(distPath));
 
-  // SPA fallback
+  // SPA fallback (Express wildcard)
   app.get("*", (_req, res) => {
     res.type("html");
     res.sendFile(path.join(distPath, "index.html"));
